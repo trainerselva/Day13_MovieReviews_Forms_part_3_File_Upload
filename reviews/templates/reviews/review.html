@@ -1,0 +1,58 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Review</title>
+    <link rel="stylesheet" href="{% static "reviews/styles.css" %}">
+</head>
+<body>
+    <h2>Your Review</h2>
+
+    <form action="" method="POST">
+        {% csrf_token %}
+
+        <!-- {% if has_error %}
+            <p>
+                This form is invalid. Please enter a valid username!!
+            </p>
+        {% endif %} -->
+
+        <!-- <label for="username">Your name: </label>
+        <input type="text" id="username" name="username"> -->
+
+        <!-- Use django form ReviewForm -->
+        <!-- {{ form }} -->
+
+        <!-- Display the form with customized list of fields -->
+        <!-- <div class="form-control">
+            {{ form.user_name.label_tag }}
+            {{ form.user_name }}
+            {{ form.user_name.errors }}
+        </div>
+        <div class="form-control">
+            {{ form.review_text.label_tag }}
+            {{ form.review_text }}
+            {{ form.review_text.errors }}
+        </div>
+        <div class="form-control">
+            {{ form.rating.label_tag }}
+            {{ form.rating }}
+            {{ form.rating.errors }}
+        </div> -->
+
+        <!-- Use the for tag to generate the entire form -->
+        {% for field in form %}
+            <div class="form-control {% if form.field.errors %}errors{% endif%}">
+                {{ field.label_tag }}
+                {{ field }}
+                {{ field.errors }}
+            </div>
+        {% endfor %}
+
+        <button>Send</button>
+    </form>
+</body>
+</html>
